@@ -8,5 +8,13 @@ namespace HomeMaintenance.Models._04_Quarter
 {
     public class QuarterListItem
     {
+        [Required]
+        public int QuarterID { get; set; }
+
+        [Required]
+        public string QuarterName { get; set; }
+
+        [Required]
+        public int Year { get; set; }
     }
 }

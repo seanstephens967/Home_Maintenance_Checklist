@@ -34,7 +34,6 @@ namespace HomeMaintenance.Data
         }
 
         public DbSet<Project> ProjectDbSet { get; set; }
-        public DbSet<ProjectSchedule> ProjectScheduleDbSet { get; set; }
         public DbSet<Month> MonthDbSet { get; set; }
         public DbSet<Quarter> QuarterDbSet { get; set; }
         public DbSet<Year> YearDbSet { get; set; }

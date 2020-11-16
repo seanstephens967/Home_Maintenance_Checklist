@@ -56,7 +56,6 @@
   <ItemGroup>
     <Compile Include="DataClasses\Month.cs" />
     <Compile Include="DataClasses\Project.cs" />
-    <Compile Include="DataClasses\ProjectSchedule.cs" />
     <Compile Include="DataClasses\Quarter.cs" />
     <Compile Include="DataClasses\Year.cs" />
     <Compile Include="IdentityModels.cs" />

@@ -8,5 +8,8 @@ namespace HomeMaintenance.Models._02_Year
 {
     public class YearDetail
     {
+        public int YearID { get; set; }
+
+        public int YearName { get; set; }
     }
 }
