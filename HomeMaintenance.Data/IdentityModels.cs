@@ -33,10 +33,9 @@ namespace HomeMaintenance.Data
             return new ApplicationDbContext();
         }
 
-        public DbSet<Project> ProjectDbSet { get; set; }
-        public DbSet<Month> MonthDbSet { get; set; }
-        public DbSet<Quarter> QuarterDbSet { get; set; }
-        public DbSet<Year> YearDbSet { get; set; }
+        public DbSet<Project> Project { get; set; }
+        public DbSet<Property> Property { get; set; }
+        public DbSet<Technician> Technician { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder
@@ -47,6 +46,8 @@ namespace HomeMaintenance.Data
                 .Configurations
                 .Add(new IdentityUserLoginConfiguration())
                 .Add(new IdentityUserRoleConfiguration());
+
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
         }
     }
     public class IdentityUserLoginConfiguration : EntityTypeConfiguration<IdentityUserLogin>

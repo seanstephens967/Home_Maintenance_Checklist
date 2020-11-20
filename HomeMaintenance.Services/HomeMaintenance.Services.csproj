@@ -55,14 +55,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\MonthService.cs" />
     <Compile Include="Services\ProjectService.cs" />
-    <Compile Include="Services\QuarterService.cs" />
-    <Compile Include="Services\YearService.cs" />
+    <Compile Include="Services\PropertyService.cs" />
+    <Compile Include="Services\TechnicianService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HomeMaintenance.Data\HomeMaintenance.Data.csproj">
+      <Project>{31C0E049-23D6-423C-8B1F-D91DDA65948E}</Project>
+      <Name>HomeMaintenance.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HomeMaintenance.Models\HomeMaintenance.Models.csproj">
+      <Project>{5d43f592-0ce5-4f4a-b2d8-b3755b1d9d93}</Project>
+      <Name>HomeMaintenance.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

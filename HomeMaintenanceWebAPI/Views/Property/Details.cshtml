@@ -1,0 +1,66 @@
+﻿@model HomeMaintenance.Models.Property.PropertyDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PropertyDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PropertyID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropertyID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PropertyOwnerFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropertyOwnerFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PropertyOwnerLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropertyOwnerLastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PropertyAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropertyAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PropertyPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropertyPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PropertyOwnerEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropertyOwnerEmail)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PropertyID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

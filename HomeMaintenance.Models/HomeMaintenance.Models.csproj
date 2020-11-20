@@ -54,25 +54,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="01 Project\ProjectCreate.cs" />
-    <Compile Include="01 Project\ProjectDetail.cs" />
-    <Compile Include="01 Project\ProjectEdit.cs" />
-    <Compile Include="01 Project\ProjectListItem.cs" />
-    <Compile Include="03 Month\MonthCreate.cs" />
-    <Compile Include="03 Month\MonthDetail.cs" />
-    <Compile Include="03 Month\MonthListItem.cs" />
-    <Compile Include="04 Quarter\QuarterCreate.cs" />
-    <Compile Include="04 Quarter\QuarterDetail.cs" />
-    <Compile Include="04 Quarter\QuarterListItem.cs" />
-    <Compile Include="02 Year\YearCreate.cs" />
-    <Compile Include="02 Year\YearDetail.cs" />
-    <Compile Include="02 Year\YearListItem.cs" />
+    <Compile Include="Project\ProjectCreate.cs" />
+    <Compile Include="Project\ProjectDetail.cs" />
+    <Compile Include="Project\ProjectEdit.cs" />
+    <Compile Include="Project\ProjectListItem.cs" />
+    <Compile Include="Property\PropertyEdit.cs" />
+    <Compile Include="Technician\TechnicianCreate.cs" />
+    <Compile Include="Technician\TechnicianDetail.cs" />
+    <Compile Include="Technician\TechnicianEdit.cs" />
+    <Compile Include="Technician\TechnicianListItem.cs" />
+    <Compile Include="Property\PropertyCreate.cs" />
+    <Compile Include="Property\PropertyDetail.cs" />
+    <Compile Include="Property\PropertyListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\HomeMaintenance.Data\HomeMaintenance.Data.csproj">
+      <Project>{31C0E049-23D6-423C-8B1F-D91DDA65948E}</Project>
+      <Name>HomeMaintenance.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

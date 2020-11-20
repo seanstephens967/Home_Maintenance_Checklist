@@ -1,0 +1,100 @@
+﻿@model IEnumerable<HomeMaintenance.Models.Project.ProjectListItem>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@if (TempData.ContainsKey("SaveResult"))
+{
+    <div class="alert alert-success fade in" role="alert">
+
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+        @TempData["SaveResult"]
+    </div>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SuppliesNeeded)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Instructions)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstimatedTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectionCreateationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectCompletionDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TechnicianNotes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TechnicianID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyID)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SuppliesNeeded)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Instructions)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstimatedTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectionCreateationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectCompletionDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TechnicianNotes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TechnicianID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PropertyID)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProjectID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ProjectID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProjectID })
+            </td>
+        </tr>
+    }
+
+</table>

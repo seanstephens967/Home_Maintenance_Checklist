@@ -1,0 +1,106 @@
+﻿@model HomeMaintenance.Models.Project.ProjectDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProjectDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjectID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjectName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SuppliesNeeded)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SuppliesNeeded)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Instructions)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Instructions)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstimatedTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstimatedTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectionCreateationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjectionCreateationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectCompletionDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjectCompletionDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TechnicianNotes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TechnicianNotes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TechnicianID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TechnicianID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PropertyID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PropertyID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProjectID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

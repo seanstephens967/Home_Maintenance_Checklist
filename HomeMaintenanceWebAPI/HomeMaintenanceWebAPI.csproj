@@ -168,10 +168,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CustomControllers\MonthController.cs" />
     <Compile Include="Controllers\CustomControllers\ProjectController.cs" />
-    <Compile Include="Controllers\CustomControllers\QuarterController.cs" />
-    <Compile Include="Controllers\CustomControllers\YearController.cs" />
+    <Compile Include="Controllers\CustomControllers\PropertyController.cs" />
+    <Compile Include="Controllers\CustomControllers\TechnicianController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -238,13 +237,24 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Technician\Index.cshtml" />
+    <Content Include="Views\Technician\Create.cshtml" />
+    <Content Include="Views\Property\Index.cshtml" />
+    <Content Include="Views\Property\Create.cshtml" />
+    <Content Include="Views\Project\Index.cshtml" />
+    <Content Include="Views\Project\Create.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTimeOffset.cshtml" />
+    <Content Include="Views\Technician\Delete.cshtml" />
+    <Content Include="Views\Technician\Edit.cshtml" />
+    <Content Include="Views\Property\Edit.cshtml" />
+    <Content Include="Views\Technician\Details.cshtml" />
+    <Content Include="Views\Property\Details.cshtml" />
+    <Content Include="Views\Property\Delete.cshtml" />
+    <Content Include="Views\Project\Details.cshtml" />
+    <Content Include="Views\Project\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Month\" />
-    <Folder Include="Views\Project\" />
-    <Folder Include="Views\Quarter\" />
-    <Folder Include="Views\Year\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

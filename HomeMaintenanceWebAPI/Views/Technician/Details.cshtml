@@ -1,0 +1,50 @@
+﻿@model HomeMaintenance.Models.Technician.TechnicianDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TechnicianDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TechnicianID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TechnicianID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TechnicianName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TechnicianName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TechnicianPhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TechnicianPhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TechnicianEmail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TechnicianEmail)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
