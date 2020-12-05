@@ -68,6 +68,22 @@ namespace HomeMaintenanceWebAPI.Controllers.CustomControllers
             return View(model);
         }
 
+        public ActionResult GetProjectByTechnicianId(int id)
+        {
+            var svc = CreateTechnicianService();
+            var model = svc.GetProjectsByTechnician(id);
+
+            return View(model);
+        }
+
+        public ActionResult GetCompletedProjectByTechnicianId(int id)
+        {
+            var svc = CreateTechnicianService();
+            var model = svc.GetCompletedProjectsByTechnician(id);
+
+            return View(model);
+        }
+
         public ActionResult Edit(int id)
         {
             var service = CreateTechnicianService();

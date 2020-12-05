@@ -4,10 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Technicians</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create Technician", "Create")
 </p>
 
 @if (TempData.ContainsKey("SaveResult"))
@@ -56,7 +56,9 @@
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.TechnicianID }) |
                 @Html.ActionLink("Details", "Details", new { id = item.TechnicianID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.TechnicianID })
+                @Html.ActionLink("Delete", "Delete", new { id = item.TechnicianID }) |
+                @Html.ActionLink("Open Projects", "GetProjectByTechnicianId", new { id = item.TechnicianID }) |
+                @Html.ActionLink("Closed Projects", "GetCompletedProjectByTechnicianId", new { id = item.TechnicianID })
             </td>
         </tr>
     }

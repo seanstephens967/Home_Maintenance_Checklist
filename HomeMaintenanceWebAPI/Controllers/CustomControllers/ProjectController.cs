@@ -1,4 +1,5 @@
-﻿using HomeMaintenance.Models.Project;
+﻿using HomeMaintenance.Data.DataClasses;
+using HomeMaintenance.Models.Project;
 using HomeMaintenance.Services.Services;
 using Microsoft.AspNet.Identity;
 using System;
@@ -16,13 +17,32 @@ namespace HomeMaintenanceWebAPI.Controllers.CustomControllers
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
             var service = new ProjectService(userId);
-            var model = service.GetProject();
+            var model = service.GetActiveProjects();
 
             return View(model);
         }
 
         public ActionResult Create()
         {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+
+            List<Property> Properties = (new PropertyService(userId)).GetProperties().ToList();
+            List<Technician> Technicians = (new TechnicianService(userId)).GetTechnicians().ToList();
+            var queryA = from o in Technicians
+                        select new SelectListItem()
+                        {
+                            Value = o.TechnicianID.ToString(),
+                            Text = o.TechnicianName
+                        };
+            ViewBag.TechnicianID = queryA.ToList();
+
+            var queryB = from o in Properties
+                         select new SelectListItem()
+                         {
+                             Value = o.PropertyID.ToString(),
+                             Text = o.PropertyAddress
+                         };
+            ViewBag.PropertyID = queryB.ToList();
             return View();
         }
 
@@ -60,10 +80,39 @@ namespace HomeMaintenanceWebAPI.Controllers.CustomControllers
             return View(model);
         }
 
+        public ActionResult GetCompletedProject()
+        {
+            var svc = CreateProjectService();
+            var model = svc.GetAllCompletedProjects();
+
+            return View(model);
+        }
+
         public ActionResult Edit(int id)
         {
             var service = CreateProjectService();
             var detail = service.GetProjectById(id);
+
+            var userId = Guid.Parse(User.Identity.GetUserId());
+
+            List<Property> Properties = (new PropertyService(userId)).GetProperties().ToList();
+            List<Technician> Technicians = (new TechnicianService(userId)).GetTechnicians().ToList();
+            var queryA = from o in Technicians
+                        select new SelectListItem()
+                        {
+                            Value = o.TechnicianID.ToString(),
+                            Text = o.TechnicianName
+                        };
+            ViewBag.TechnicianID = queryA.ToList();
+
+            var queryB = from o in Properties
+                         select new SelectListItem()
+                         {
+                             Value = o.PropertyID.ToString(),
+                             Text = o.PropertyAddress
+                         };
+            ViewBag.PropertyID = queryB.ToList();
+
             var model =
                 new ProjectEdit
                 {
@@ -103,6 +152,42 @@ namespace HomeMaintenanceWebAPI.Controllers.CustomControllers
             }
 
             ModelState.AddModelError("", "Project could not be updated.");
+            return View(model);
+        }
+
+        public ActionResult Archive(int id)
+        {
+            var service = CreateProjectService();
+            var detail = service.GetProjectById(id);
+            var model =
+                new ProjectEdit
+                {
+                    ProjectCompletionDate = detail.ProjectCompletionDate,
+                };
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Archive(int id, ProjectEdit model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            if (model.ProjectID != id)
+            {
+                ModelState.AddModelError("", "Id Mismatch");
+                return View(model);
+            }
+
+            var service = CreateProjectService();
+
+            if (service.UpdateProject(model))
+            {
+                TempData["SaveResult"] = "Project Archived.";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Project could not be archived.");
             return View(model);
         }
     }

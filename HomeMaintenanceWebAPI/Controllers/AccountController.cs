@@ -10,6 +10,9 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using HomeMaintenanceWebAPI.Models;
 using HomeMaintenance.Data;
+using HomeMaintenance.Services.Services;
+using HomeMaintenance.Models.Users;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace HomeMaintenanceWebAPI.Controllers
 {
@@ -423,6 +426,108 @@ namespace HomeMaintenanceWebAPI.Controllers
 
             base.Dispose(disposing);
         }
+
+        public ActionResult Index()
+        {
+            var userService = new UserService();
+            var users = userService.GetAllUsers();
+
+            //using (var ctx = new ApplicationDbContext())
+            //{
+            //    ctx.Roles.Add(new IdentityRole()
+            //    {
+            //        Name = "admin"
+            //    });
+            //    ctx.SaveChanges();
+            //}
+
+            var userList = users.Select(u =>
+            {
+
+                return new UserListItem()
+                {
+                    UserID = u.Id,
+                    UserName = u.UserName
+                };
+            }).ToList();
+            return View(userList);
+        }
+
+        public ActionResult Details(string userId)
+        {
+            ApplicationUser User = UserManager.FindById(userId);
+            var userDetailModel = new UserDetail()
+            {
+                UserName = User.UserName,
+                UserID = User.Id
+            };
+            return View(userDetailModel);
+        }
+
+        public ActionResult Edit( string userId)
+        {
+            ApplicationUser user = UserManager.FindById(userId);
+            var UserRoles = UserManager.GetRoles(userId);
+                var userEditModel = new UserEdit()
+                {
+
+                    UserName = user.UserName,
+                    UserID = user.Id,
+                    IsAdmin = UserRoles.Any(r => r == "admin")
+                };
+            return View(userEditModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(string userId, UserEdit model)
+        {
+
+            var currentUserId = User.Identity.GetUserId();
+            var currentRoles = UserManager.GetRoles(currentUserId);
+
+            var UserRoles = UserManager.GetRoles(userId);
+            bool UserIsAdmin = UserRoles.Any(r => r == "admin");
+
+            if (!currentRoles.Contains("admin"))
+            {
+                ModelState.AddModelError("", "Access Denied");
+                return View(model);
+            }
+
+            if (!ModelState.IsValid) return View(model);
+
+            if (model.UserID != userId) 
+            {
+                ModelState.AddModelError("", "Id Mismatch");
+            }
+
+            ApplicationUser user = UserManager.FindById(userId);
+            user.UserName = model.UserName;
+
+            if (model.IsAdmin)
+            {
+                UserManager.AddToRole(userId, "admin");
+            }
+
+            if (UserIsAdmin && !model.IsAdmin)
+            {
+                if (userId == currentUserId)
+                {
+                    ModelState.AddModelError("", "An Admin cannot remove themself as admin");
+                }
+                UserManager.RemoveFromRole(userId, "admin");
+            }
+
+            if (UserManager.Update(user).Succeeded)
+            {
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "User could not be updated");
+            return View(model);
+        }
+
 
         #region Helpers
         // Used for XSRF protection when adding external logins

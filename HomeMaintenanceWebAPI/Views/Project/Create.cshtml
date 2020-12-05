@@ -6,7 +6,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>ProjectCreate</h4>
+        <h4>Add Project</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -50,14 +50,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ProjectionCreateationDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ProjectionCreateationDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ProjectionCreateationDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.ProjectCompletionDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ProjectCompletionDate, new { htmlAttributes = new { @class = "form-control" } })
@@ -76,7 +68,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.TechnicianID, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TechnicianID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.TechnicianID, ViewBag.TechnicianID as SelectList, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.TechnicianID, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -84,7 +76,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PropertyID, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PropertyID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.PropertyID, ViewBag.PropertyID as SelectList, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.PropertyID, "", new { @class = "text-danger" })
             </div>
         </div>

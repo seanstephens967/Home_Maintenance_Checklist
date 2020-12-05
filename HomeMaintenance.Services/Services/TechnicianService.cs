@@ -1,5 +1,6 @@
 ﻿using HomeMaintenance.Data;
 using HomeMaintenance.Data.DataClasses;
+using HomeMaintenance.Models.Project;
 using HomeMaintenance.Models.Technician;
 using System;
 using System.Collections.Generic;
@@ -56,6 +57,14 @@ namespace HomeMaintenance.Services.Services
             }
         }
 
+        public IEnumerable<Technician> GetTechnicians()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                return ctx.Technician.ToList();
+            }
+        }
+
         public TechnicianDetail GetTechnicianById(int id)
         {
             using (var ctx = new ApplicationDbContext())
@@ -106,6 +115,64 @@ namespace HomeMaintenance.Services.Services
                 ctx.Technician.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
+            }
+        }
+
+        // Get Active Projects By Technician
+        public IEnumerable<ProjectListItem> GetProjectsByTechnician(int technicianId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query = ctx
+                    .Project
+                    .Where(e => e.TechnicianID == technicianId && e.ProjectCompletionDate == null)
+                    .Select(
+                        e =>
+                            new ProjectListItem
+                            {
+                                ProjectID = e.ProjectID,
+                                ProjectName = e.ProjectName,
+                                ProjectTask = e.ProjectTask,
+                                Description = e.Description,
+                                SuppliesNeeded = e.SuppliesNeeded,
+                                Instructions = e.Instructions,
+                                EstimatedTime = e.EstimatedTime,
+                                ProjectionCreateationDate = e.ProjectionCreateationDate,
+                                ProjectCompletionDate = e.ProjectCompletionDate,
+                                TechnicianNotes = e.TechnicianNotes,
+                                PropertyID = e.PropertyID,
+                                TechnicianID = e.TechnicianID
+                            });
+                return query.ToArray();
+            }
+        }
+
+        // Get Completed Projects By Technician
+        public IEnumerable<ProjectListItem> GetCompletedProjectsByTechnician(int technicianId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query = ctx
+                    .Project
+                    .Where(e => e.TechnicianID == technicianId && e.ProjectCompletionDate != null)
+                    .Select(
+                        e =>
+                            new ProjectListItem
+                            {
+                                ProjectID = e.ProjectID,
+                                ProjectName = e.ProjectName,
+                                ProjectTask = e.ProjectTask,
+                                Description = e.Description,
+                                SuppliesNeeded = e.SuppliesNeeded,
+                                Instructions = e.Instructions,
+                                EstimatedTime = e.EstimatedTime,
+                                ProjectionCreateationDate = e.ProjectionCreateationDate,
+                                ProjectCompletionDate = e.ProjectCompletionDate,
+                                TechnicianNotes = e.TechnicianNotes,
+                                PropertyID = e.PropertyID,
+                                TechnicianID = e.TechnicianID
+                            });
+                return query.ToArray();
             }
         }
     }

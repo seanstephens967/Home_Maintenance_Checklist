@@ -1,20 +1,15 @@
 ﻿@model IEnumerable<HomeMaintenance.Models.Project.ProjectListItem>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
-@if (TempData.ContainsKey("SaveResult"))
-{
-    <div class="alert alert-success fade in" role="alert">
-
-        <button type="button" class="close" data-dismiss="alert">
-            <span>&times;</span>
-        </button>
-        @TempData["SaveResult"]
-    </div>
+@{
+    ViewBag.Title = "Index";
 }
 
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create") |
+    @Html.ActionLink("View Completed Projects", "GetCompletedProject")
+</p>
 <table class="table">
     <tr>
         <th>
@@ -53,48 +48,46 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProjectID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProjectName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SuppliesNeeded)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Instructions)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EstimatedTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProjectionCreateationDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProjectCompletionDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TechnicianNotes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TechnicianID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PropertyID)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ProjectID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ProjectID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ProjectID })
-            </td>
-        </tr>
-    }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SuppliesNeeded)
+        </td>
+        <td>
+            <a href="https://localhost:44383/SOPS/IM1004.aspx" target="_blank">@Html.DisplayFor(modelItem => item.Instructions)</a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstimatedTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectionCreateationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectCompletionDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TechnicianNotes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TechnicianID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropertyID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ProjectID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ProjectID }) 
+        </td>
+    </tr>
+}
 
 </table>

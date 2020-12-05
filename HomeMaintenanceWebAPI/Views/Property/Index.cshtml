@@ -62,7 +62,9 @@
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.PropertyID }) |
                 @Html.ActionLink("Details", "Details", new { id = item.PropertyID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.PropertyID })
+                @Html.ActionLink("Delete", "Delete", new { id = item.PropertyID }) |
+                @Html.ActionLink("Open Projects", "GetActiveProjectByPropertyById", new { id = item.PropertyID }) |
+                @Html.ActionLink("Closed Projects", "GetCompletedProjectByPropertyById", new { id = item.PropertyID })
             </td>
         </tr>
     }

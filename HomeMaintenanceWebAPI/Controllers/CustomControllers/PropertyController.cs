@@ -1,4 +1,6 @@
-﻿using HomeMaintenance.Models.Property;
+﻿using HomeMaintenance.Data;
+using HomeMaintenance.Data.DataClasses;
+using HomeMaintenance.Models.Property;
 using HomeMaintenance.Services.Services;
 using Microsoft.AspNet.Identity;
 using System;
@@ -64,6 +66,22 @@ namespace HomeMaintenanceWebAPI.Controllers.CustomControllers
         {
             var svc = CreatePropertyService();
             var model = svc.GetPropertyById(id);
+
+            return View(model);
+        }
+
+        public ActionResult GetActiveProjectByPropertyById(int id)
+        {
+            var svc = CreatePropertyService();
+            var model = svc.GetActiveProjectsByPropertyId(id);
+
+            return View(model);
+        }
+
+        public ActionResult GetCompletedProjectByPropertyById(int id)
+        {
+            var svc = CreatePropertyService();
+            var model = svc.GetCompletedProjectsByPropertyId(id);
 
             return View(model);
         }

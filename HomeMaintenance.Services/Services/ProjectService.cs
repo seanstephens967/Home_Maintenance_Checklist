@@ -125,7 +125,7 @@ namespace HomeMaintenance.Services.Services
         }
 
         //Archive Projects
-        public bool ArchivePersonnel(ProjectArchive model)
+        public bool ArchiveProject(ProjectArchive model)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -202,62 +202,8 @@ namespace HomeMaintenance.Services.Services
             }
         }
 
-        // Get Projects By Property
-        public IEnumerable<ProjectListItem> GetProjectsByProperty(int propertyId)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var query = ctx
-                    .Project
-                    .Where(e => e.PropertyID == propertyId)
-                    .Select(
-                        e =>
-                            new ProjectListItem
-                            {
-                                ProjectID = e.ProjectID,
-                                ProjectName = e.ProjectName,
-                                ProjectTask = e.ProjectTask,
-                                Description = e.Description,
-                                SuppliesNeeded = e.SuppliesNeeded,
-                                Instructions = e.Instructions,
-                                EstimatedTime = e.EstimatedTime,
-                                ProjectionCreateationDate = e.ProjectionCreateationDate,
-                                ProjectCompletionDate = e.ProjectCompletionDate,
-                                TechnicianNotes = e.TechnicianNotes,
-                                PropertyID = e.PropertyID,
-                                TechnicianID = e.TechnicianID
-                            });
-                return query.ToArray();
-            }
-        }
+        
 
-        // Get Projects By Technician
-        public IEnumerable<ProjectListItem> GetProjectsByTechnician(int technicianId)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var query = ctx
-                    .Project
-                    .Where(e => e.TechnicianID == technicianId)
-                    .Select(
-                        e =>
-                            new ProjectListItem
-                            {
-                                ProjectID = e.ProjectID,
-                                ProjectName = e.ProjectName,
-                                ProjectTask = e.ProjectTask,
-                                Description = e.Description,
-                                SuppliesNeeded = e.SuppliesNeeded,
-                                Instructions = e.Instructions,
-                                EstimatedTime = e.EstimatedTime,
-                                ProjectionCreateationDate = e.ProjectionCreateationDate,
-                                ProjectCompletionDate = e.ProjectCompletionDate,
-                                TechnicianNotes = e.TechnicianNotes,
-                                PropertyID = e.PropertyID,
-                                TechnicianID = e.TechnicianID
-                            });
-                return query.ToArray();
-            }
-        }
+        
     }
 }
