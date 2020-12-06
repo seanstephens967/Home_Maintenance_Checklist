@@ -10,3 +10,5 @@ Another important thing to note is how the projection completion date works. Mos
 
 In future versions of the program there will be a SOP (Standard Operating Procedures) class that will hold instructional guides to specific projects. When you enter in instructions when creating or editing a project the data will return to the table as a hyperlink which is currently linked to a blank instructions page. In the future, SOP guides will be available as a drop down feature when creating or editing a project.
 
+The last thing to note is the Users section. As of now this table view only unless given admin rights. In future versions of the project, certain data will only be created and edited by an Administrator.
+
